@@ -1,0 +1,91 @@
+/* Mihael Stager, CS10B, september 6, 2020, Dave Harden
+In this program the user plays a guessing game where they tell the programm if the number is higher or lower.
+The program works by using mutiplte voids and a int function to simplify the code.
+*/
+
+#include <iostream>
+using namespace std;
+void playOneGame();
+int getMidPoint(int low, int high);
+void getUserResponseToGuess(char& answer);
+const int HIGHEST_NUMBER = 100;
+const int LOWEST_NUMBER = 0;
+
+int main() {
+    char response;
+
+    cout << "Ready to play (y/n)? ";
+    cin >> response;
+    while (response == 'y') {
+        playOneGame();
+        cout << "Great! Do you want to play again (y/n)? ";
+        cin >> response;
+    }
+}
+
+
+
+
+
+// puts everything to getter and runs one game as the name implies.
+void playOneGame(){
+    int low = LOWEST_NUMBER;
+    int high = HIGHEST_NUMBER;
+    char answer;
+    
+        cout << "think of a number between 1 and 100" << endl;
+        cout << "My guess is " << getMidPoint(low, high);
+        getUserResponseToGuess(answer);
+        while (answer != 'c') {
+       while (answer == 'l') {
+            high = getMidPoint(low, high);
+            cout << "My guess is " << getMidPoint(low, high);
+            getUserResponseToGuess(answer);
+        }
+        while (answer == 'h') {
+            low = getMidPoint(low, high);
+            cout << "My guess is " << getMidPoint(low, high);
+            getUserResponseToGuess(answer);
+        }
+
+    }
+    
+}
+
+
+
+
+
+// Makes the midpoint of the low and high number 
+int getMidPoint(int low, int high) {
+    
+   int midPoint = (low + high) / 2 ;
+    
+    return midPoint;
+}
+
+
+
+
+
+// gets the user Respone to the answer of the guess and tells the PlayOneGame function the answer.
+void getUserResponseToGuess(char &answer) {
+    cout << ". Enter 'l' if your number is lower, 'h' if it is higher, 'c' if it is correct: ";
+    cin >> answer;
+}
+
+/*
+SAMPLE OUTPUT:
+Ready to play (y/n)? y
+think of a number between 1 and 100
+My guess is 50. Enter 'l' if your number is lower, 'h' if it is higher, 'c' if it is correct: h
+My guess is 75. Enter 'l' if your number is lower, 'h' if it is higher, 'c' if it is correct: h
+My guess is 87. Enter 'l' if your number is lower, 'h' if it is higher, 'c' if it is correct: l
+My guess is 81. Enter 'l' if your number is lower, 'h' if it is higher, 'c' if it is correct: c
+Great! Do you want to play again (y/n)? y
+think of a number between 1 and 100
+My guess is 50. Enter 'l' if your number is lower, 'h' if it is higher, 'c' if it is correct: l
+My guess is 25. Enter 'l' if your number is lower, 'h' if it is higher, 'c' if it is correct: h
+My guess is 37. Enter 'l' if your number is lower, 'h' if it is higher, 'c' if it is correct: c
+Great! Do you want to play again (y/n)? n
+*/
